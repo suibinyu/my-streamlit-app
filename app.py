@@ -1,95 +1,81 @@
 import streamlit as st
-import pandas as pd
-import numpy as np
 
-# 设置页面配置
+# 页面设置
 st.set_page_config(
-    page_title="我的微信公众号应用",
-    page_icon="🚀",
-    layout="wide"
+    page_title="品牌官网",
+    page_icon="⭐",
+    layout="centered"
 )
 
-# 应用标题
-st.title("🚀 欢迎使用我们的微信公众号应用")
-st.markdown("---")
-
-# 侧边栏
-with st.sidebar:
-    st.header("导航菜单")
-    menu_option = st.selectbox(
-        "选择功能",
-        ["首页", "产品展示", "服务介绍", "联系我们"]
-    )
-
-# 根据选择显示不同内容
-if menu_option == "首页":
-    st.header("公司简介")
-    st.write("我们是一家专业的科技公司，致力于为客户提供最优质的服务。")
-    
-    col1, col2 = st.columns(2)
-    
-    with col1:
-        st.subheader("我们的优势")
-        st.write("• 专业团队")
-        st.write("• 多年经验")
-        st.write("• 客户至上")
-    
-    with col2:
-        st.subheader("核心价值")
-        st.write("• 创新")
-        st.write("• 诚信")
-        st.write("• 卓越")
-
-elif menu_option == "产品展示":
-    st.header("产品展示")
-    
-    # 示例数据
-    products = {
-        "产品名称": ["产品A", "产品B", "产品C", "产品D"],
-        "价格": [299, 399, 499, 599],
-        "评分": [4.5, 4.2, 4.8, 4.0]
+# 自定义样式
+st.markdown("""
+<style>
+    .main {
+        padding: 1rem;
     }
-    
-    df = pd.DataFrame(products)
-    st.dataframe(df, use_container_width=True)
-    
-    # 图表展示
-    st.subheader("产品评分图表")
-    st.bar_chart(df.set_index("产品名称")["评分"])
+    .header {
+        text-align: center;
+        padding: 2rem 0;
+    }
+    .service-card {
+        background: #f8f9fa;
+        padding: 1.5rem;
+        border-radius: 10px;
+        margin: 1rem 0;
+    }
+    .contact-info {
+        text-align: center;
+        margin: 1rem 0;
+    }
+</style>
+""", unsafe_allow_html=True)
 
-elif menu_option == "服务介绍":
-    st.header("我们的服务")
-    
-    services = st.columns(3)
-    
-    with services[0]:
-        st.info("**专业咨询**")
-        st.write("提供专业的行业咨询和解决方案")
-    
-    with services[1]:
-        st.success("**技术支持**")
-        st.write("全面的技术支持和维护服务")
-    
-    with services[2]:
-        st.warning("**定制开发**")
-        st.write("根据需求定制专属解决方案")
+# 顶部标题
+st.markdown('<div class="header">', unsafe_allow_html=True)
+st.title("品牌名称")
+st.markdown("**专业服务 · 值得信赖**")
+st.markdown('</div>', unsafe_allow_html=True)
 
-elif menu_option == "联系我们":
-    st.header("联系我们")
-    
-    with st.form("contact_form"):
-        st.subheader("留言咨询")
-        name = st.text_input("姓名")
-        email = st.text_input("邮箱")
-        message = st.text_area("留言内容")
-        
-        submitted = st.form_submit_button("提交")
-        if submitted:
-            if name and email and message:
-                st.success("感谢您的留言！我们会尽快回复。")
-            else:
-                st.error("请填写所有必填字段")
+# 公司简介
+st.header("关于我们")
+st.write("我们专注于提供高品质的服务，致力于为客户创造最大价值。")
 
-# 页脚
+# 服务项目
+st.header("我们的服务")
+
+col1, col2 = st.columns(2)
+
+with col1:
+    st.markdown('<div class="service-card">', unsafe_allow_html=True)
+    st.subheader("专业咨询")
+    st.write("提供专业的行业咨询和解决方案")
+    st.markdown('</div>', unsafe_allow_html=True)
+    
+    st.markdown('<div class="service-card">', unsafe_allow_html=True)
+    st.subheader("技术支持")
+    st.write("全面的技术支持和维护服务")
+    st.markdown('</div>', unsafe_allow_html=True)
+
+with col2:
+    st.markdown('<div class="service-card">', unsafe_allow_html=True)
+    st.subheader("数据分析")
+    st.write("深度数据分析和业务洞察")
+    st.markdown('</div>', unsafe_allow_html=True)
+    
+    st.markdown('<div class="service-card">', unsafe_allow_html=True)
+    st.subheader("定制开发")
+    st.write("根据需求定制专属解决方案")
+    st.markdown('</div>', unsafe_allow_html=True)
+
+# 联系方式
+st.header("联系我们")
+
+st.markdown('<div class="contact-info">', unsafe_allow_html=True)
+st.write("📞 400-123-4567")
+st.write("📧 contact@company.com")
+st.write("📍 北京市朝阳区xxx街道")
+st.markdown('</div>', unsafe_allow_html=True)
+
+# 底部
 st.markdown("---")
-st.markdown("© 2024 我的公司 - 版权所有")
+st.markdown("<p style='text-align: center; color: #666;'>© 2024 品牌名称 版权所有</p>", unsafe_allow_html=True)
